@@ -1,0 +1,37 @@
+import { getCategories } from "../../api/apiNews";
+import { useFetch } from "../../helpers/hooks/useFetch";
+import { Categories } from "../Categories/Categories";
+import type { CategoriesApiResponse, IFilters } from "../interfaces";
+import { Search } from "../Search/Search";
+import { Slider } from "../Slider/Slider";
+import styles from "./styles.module.css";
+
+interface Props {
+  filters: IFilters;
+  changeFilter: (key: string, value: string | number | null) => void
+}
+
+export const NewsFilters = ({ filters, changeFilter } : Props) => {
+  const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(getCategories);
+
+  return (
+    <div className={styles.filters}>
+      <Slider>
+        {dataCategories ? (
+          <Categories
+            categories={dataCategories.categories}
+            selectedCategory={filters.category}
+            setSelectedCategory={(category) =>
+              changeFilter("category", category)
+            }
+          />
+        ) : null}
+      </Slider>
+
+      <Search
+        keywords={filters.keywords}
+        setKeywords={(keywords) => changeFilter("keywords", keywords)}
+      />
+    </div>
+  );
+};

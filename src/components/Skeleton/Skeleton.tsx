@@ -1,10 +1,25 @@
+import type { DirectionType, SkeletonType } from "../interfaces";
 import styles from "./styles.module.css";
 
-export const Skeleton = ({ count = 1, type = "banner", direction = 'column'}) => {
+interface Props {
+  type?: SkeletonType;
+  count?: number;
+  direction?: DirectionType;
+}
+
+export const Skeleton = ({
+  count = 1,
+  type = "banner",
+  direction = "column",
+}: Props) => {
   return (
     <>
       {count > 1 ? (
-        <ul className={ direction === 'column' ? styles.columnList : styles.rowList}>
+        <ul
+          className={
+            direction === "column" ? styles.columnList : styles.rowList
+          }
+        >
           {[...Array(count)].map((_, index) => (
             <li
               key={index}

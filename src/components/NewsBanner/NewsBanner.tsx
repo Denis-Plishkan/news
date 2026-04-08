@@ -1,8 +1,13 @@
 import { formatTimeAgo } from "../../helpers/formatTimeAgo";
-import { Image } from "../image/image";
+import { Image } from "../image/Image";
+import type { INews } from "../interfaces";
 import styles from "./styles.module.css";
 
-export const NewsBanner = ({ item }) => {
+interface Props {
+  item : INews;
+}
+
+export const NewsBanner = ({ item } : Props) => {
   return (
     <div className={styles.banner}>
       <Image image={item?.image} />

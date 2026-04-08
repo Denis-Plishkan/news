@@ -6,3 +6,9 @@
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .banners {
+    max-height: 1200px;
+    overflow-y: auto;
+  }
+}
