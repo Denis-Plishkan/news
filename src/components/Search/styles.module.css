@@ -5,6 +5,14 @@
   background: white;
 }
 
+.light {
+  background: white;
+}
+
+.dark {
+  background: #23272f;
+}
+
 .input {
   width: 100%;
   padding: 10px;
