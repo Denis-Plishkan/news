@@ -4,20 +4,20 @@ import type { DirectionType, SkeletonType } from "@/shared/interfaces";
 
 interface Props {
   isLoading: boolean;
+  direction?: DirectionType;
+  type?: SkeletonType;
 }
 
 export const withSkeleton = <P extends object>(
   Component: React.ComponentType<P>,
-  type?: SkeletonType,
   count?: number,
-  direction?: DirectionType,
 ) => {
   return function WithSkeleton(props: Props & P) {
-    const { isLoading, ...restProps } = props;
+    const { isLoading, type, direction = 'column', ...restProps } = props;
     if (isLoading) {
       return <Skeleton type={type} count={count} direction={direction} />;
     }
 
-    return <Component {...(restProps as P)} />;
+    return <Component type={type} {...(restProps as P)} />;
   };
 };
